@@ -1,9 +1,11 @@
+import com.example.grpc.Hello;
+import com.example.grpc.HelloWorldServiceGrpc;
 import io.grpc.stub.StreamObserver;
 
 public class HelloWorldServiceImpl extends HelloWorldServiceGrpc.HelloWorldServiceImplBase {
 
     @Override
-    public void hello( Hello.HelloRequest request, StreamObserver<Hello.HelloResponse> responseObserver) {
+    public void hello(Hello.HelloRequest request, StreamObserver<Hello.HelloResponse> responseObserver) {
 
         System.out.println("Handling hello endpoint: " + request.toString());
 

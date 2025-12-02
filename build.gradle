@@ -51,6 +51,6 @@ tasks.register('runClient', JavaExec) {
     description = 'Runs the gRPC client'
     classpath = sourceSets.main.runtimeClasspath
     mainClass = 'HelloWorldClient'
-     args 'Thomas' 
-     args 'Micheler'
+     args 'Daniel'
+     args 'Wimma'
 }

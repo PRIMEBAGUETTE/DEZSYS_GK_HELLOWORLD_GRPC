@@ -1,7 +1,10 @@
 syntax = "proto3";
 
+option java_package = "com.example.grpc";
+option java_outer_classname = "Hello";
+
 service HelloWorldService {
-  rpc hello(HelloRequest) returns (HelloResponse) {}
+  rpc hello(HelloRequest) returns (HelloResponse);
 }
 
 message HelloRequest {
