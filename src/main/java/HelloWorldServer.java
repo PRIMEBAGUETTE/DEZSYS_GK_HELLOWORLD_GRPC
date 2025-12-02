@@ -10,7 +10,7 @@ public class HelloWorldServer {
 
     public void start() throws IOException {
         server = ServerBuilder.forPort(PORT)
-                .addService(new HelloWorldServiceImpl())
+                .addService(new DataWarehouseServiceImpl())
                 .build()
                 .start();
     }

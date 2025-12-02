@@ -1,22 +1,29 @@
 import sys
+sys.path.append('src/main/resources')  # Add resources folder to Python path
+
 import grpc
+import datawarehouse_pb2
+import datawarehouse_pb2_grpc
 
-import hello_pb2 as hello_pb2
-import hello_pb2_grpc as hello_pb2_grpc
+def run():
+    # Connect to Java gRPC server
+    channel = grpc.insecure_channel('localhost:50051')
+    stub = datawarehouse_pb2_grpc.DataWarehouseServiceStub(channel)
 
+    # Create a record
+    record = datawarehouse_pb2.DataWarehouseRecord(
+        warehouseID="1",
+        warehouseName="Wimma",
+        warehouseAddress="WImmerstraße",
+        warehousePostalCode="12345",
+        warehouseCity="Wien",
+        warehouseCountry="Austria",
+        timestamp="2025-12-02T12:00:00Z"
+    )
 
-def main():
-    firstname = sys.argv[1] if len(sys.argv) > 1 else "Max"
-    lastname = sys.argv[2] if len(sys.argv) > 2 else "Mustermann"
-
-    # Connect to server
-    with grpc.insecure_channel("localhost:50051") as channel:
-        stub = hello_pb2_grpc.HelloWorldServiceStub(channel)
-        request = hello_pb2.HelloRequest(firstname=firstname, lastname=lastname)
-        response = stub.hello(request)
-        print()
-        print(response.text)
-        print()
+    # Call gRPC method
+    response = stub.sendRecord(record)
+    print("Server response:", response.status)
 
 if __name__ == "__main__":
-    main()
+    run()

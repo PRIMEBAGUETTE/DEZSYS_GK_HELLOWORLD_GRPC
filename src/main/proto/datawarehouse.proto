@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package = "com.example.grpc";
+option java_outer_classname = "DataWarehouseProto";
+
+service DataWarehouseService {
+  rpc sendRecord(DataWarehouseRecord) returns (RecordResponse);
+}
+
+message DataWarehouseRecord {
+  string warehouseID = 1;
+  string warehouseName = 2;
+  string warehouseAddress = 3;
+  string warehousePostalCode = 4;
+  string warehouseCity = 5;
+  string warehouseCountry = 6;
+  string timestamp = 7;
+}
+
+message RecordResponse {
+  string status = 1;
+}
